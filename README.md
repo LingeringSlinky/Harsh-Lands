@@ -1,11 +1,17 @@
 Harsh Lands is a Turn-Based Territory Control / Management / Auto-Battler hybrid game for one player. The player takes on the roll of Taaro Vess, Commander of the Altarian Expeditionary Forces, appointed by the King of Altair to take control of Glaerfyllen to claim as Altairian land. There are two other Factions also claiming their stake: The Kingdom of Sei Rae, led by Al-Khariq Aq Ullr, Imram of the Sei Raqqyan Caliphade, and Vessenia, led by Alric Vy, Chieftain of the Vezeriin. Whoever is able to capture the regions as well as drive the opposing Factions out of the land will be able to call Glaerfyllen as their Hold.
+
 Basics:
+
 The game map is a tile-based 20x20 board made up of 14 Regions, each comprised of a set amount of tiles. Each Faction has a starting region. Altair’s is Arc Mannis. Hex Tiles are only for movement purposes and Structure-Auto Place. There are no Terrain Requirements for Structures.
+
 Each of the Army Pawns move from adjacent Region by Region, NOT Tile by Tile. The Pawn is coded to move towards the closest center of each Region. An Army Pawn can only move once per turn.
 Regions are Level Locked by the Empire Level. This is a level that is increased by certain Structures that are built that explicitly state they generate +Empire per turn. If a Faction’s Empire level does not meet or exceed and adjacent Region level, they cannot move there. It is accepted that for the first few turns, the player cannot move their pawn to any adjacent Region, instead focusing on construction and management to increase their Empire Level until they are able to expand.
+
 Expansion is done by moving to an available un-owned and un-occupied Region and Pressing O to build an Outpost if they have the required resources. This Outpost then flips control of the Region to the Faction that built the Outpost. Once that Region is owned, then any construction and management can be done to that Region.
+
 Combat is done in 10 second Auto-Bursts. Once a Combat Action is made, the Army that made the Action is locked out until the next turn. Combat is explained in greater detail further down this document.
 Structures are built on owned Regions and give resource generations and bonuses. They all have costs associated with them. They are explained further down this document.
+
 Resources are generated per turn and come from the various Structures built in a Region. Resources are put into a Global Pool for the Faction, not tied to specific Regions.
 
 
