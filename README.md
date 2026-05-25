@@ -163,6 +163,7 @@ Using the above example:
 Because Damage stacks:
 
 8 Swordsmen = 48-72 Damage
+
 2 Crossbowmen = 4-10 Damage
 
 This creates a combined Army attack profile of:
