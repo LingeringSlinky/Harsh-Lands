@@ -112,13 +112,13 @@ Administration Cards are unique Cards that are slotted on to the Region. These g
 
 Army Pawns:
 
-Army Pawns are used to move around the board by Region if level allows. They are used to Capture Regions to increase the expansion of the Empire and further the Campaign End, and also to wage Battle with other Factions. They can also be used in a defensive stance, by simply leaving a Pawn on a Region the Player wishes to hold continuously. Army Pawns have one Action per turn, either move once or attack once. They are comprised of a Unit Stack, and a Player can have multiple Armies, but there is a limit of ONE Friendly Army per Region. Armies are also able to be merged. This is done by selecting an Army and moving it into a region with another Friendly Army. This will then combine the Army’s Unit Stacks on to the Army that was being moved to. Example: Player has an Army of 250, and on an adjacent Region has an Army of 600, they select the Army of 250 and move that Army into the Region of the 600 Army. That 600 Army now becomes one Army of 850. An Army’s Health is made up of its Unit Stack. Each Unit placed into an Army is worth 50hp. So, if three Units are recruited, that will add 150hp to an existing Army if merged, or another Army of 150hp. There are currently no caps on Army sizes.
+Army Pawns are used to move around the board by Region if level allows. They are used to Capture Regions to increase the expansion of the Empire and further the Campaign End, and also to wage Battle with other Factions. They can also be used in a defensive stance, by simply leaving a Pawn on a Region the Player wishes to hold continuously. Army Pawns have one Action per turn, either move once or attack once. They are comprised of a Unit Stack, and a Player can have multiple Armies, but there is a limit of ONE Friendly Army per Region. Armies are also able to be merged. This is done by selecting an Army and moving it into a region with another Friendly Army. This will then combine the Army’s Unit Stacks on to the Army that was being moved to. Example: Player has an Army of 2500, and on an adjacent Region has an Army of 6000, they select the Army of 2500 and move that Army into the Region of the 6000 Army. That 6000 Army now becomes one Army of 8500. An Army’s Health is made up of its Unit Stack. Each Unit placed into an Army is worth 250hp. So, if three Units are recruited, that will add 750hp to an existing Army if merged, or another Army of 750hp. There are currently no caps on Army sizes.
 
 Units:
 
-Units are used to make up Armies. They are recruited by constructing the Structures required for their Unit Class (Barracks for Infantry, Range for Ranged, Stable for Cavalry, Foundry for Siege). There are numerous Unit Types in each Unit Class. The Infantry Class will have Swordsmen, Axemen, Halberdiers, Pikemen, etc. Ranged Class will have Crossbowmen, Longbowmen, Shortbowmen, Slingshotters, etc., so on and so forth. All Units have 50hp, which is used to make up an Armies overall Health Pool. Each Unit Type has a resource Cost associated with its recruitment, and recruiting a Unit is one of that Unit. Units have specific stats associated with them, explained below:
+Units are used to make up Armies. They are recruited by constructing the Structures required for their Unit Class (Barracks for Infantry, Range for Ranged, Stable for Cavalry, Foundry for Siege). There are numerous Unit Types in each Unit Class. The Infantry Class will have Swordsmen, Axemen, Halberdiers, Pikemen, etc. Ranged Class will have Crossbowmen, Longbowmen, Shortbowmen, Slingshotters, etc., so on and so forth. All Units have 250hp, which is used to make up an Armies overall Health Pool. Each Unit Type has a resource Cost associated with its recruitment, and recruiting a Unit is one of that Unit. Units have specific stats associated with them, explained below:
 
-•	Health: What this Unit adds to the Army Health Pool. Is hard-set to 50.
+•	Health: What this Unit adds to the Army Health Pool. Is hard-set to 250.
 
 •	Armor: The amount of incoming Damage that will be mitigated.
 
@@ -132,16 +132,95 @@ Units are used to make up Armies. They are recruited by constructing the Structu
 
 •	Cost: The required Tactics, Food, Wood, Ore, Water, and Gold needed to recruit Unit.
 
+Damage by Units is inflicted based on Damage Variance and Time Variance. Each Unit Type has different variances. These are calculated during the 15-second Combat Action. UNIT DAMAGE AND ARMOR STACKS.
 
-Damage by Units is inflicted based on Damage Variance and Time Variance. Each Unit Type has different variances. These are calculated during the 10-second Combat Action. UNIT DAMAGE DOES NOT STACK. The ONLY stackable value is the Health. If you have 10 Units with a Damage Variance of 17-21, you have a Health value of 500, and will inflict 17-21 Damage per Time Variance, NOT 170-210.
+
+
 
 
 Combat:
 
-Combat is done in 10-Second “bursts”, and each Army engaged in a Combat Burst will run their Combat logic. It will be easier to explain in a scenario:
-Player has an Army of 500 and moves to attack an enemy Army of 500 Each Armies Unit Stack is comprised of 8 Swordsmen and 2 Crossbowmen (400 + 100 = 500). That is its Health Pool. As described above, the Swordsman Damage is 17-21 per every 1.5-2.1 seconds, and the Crossbowmen’s is 25-28 every 2.5-3.1 seconds. So, when Combat is initiated, a Damage Value is inflicted on the opposing Army at each Time Variance over the course of 10 seconds. Once the 10 seconds is complete. The attacking Army gets locked out until the next Turn, leaving them open for a second attack if the attacked Army chooses to. What this would look like is: Two Armies of 500 engage, 10 seconds passes showing Health Pool decrease in real-time, and then after Combat, one Army has 383 and the other Army has 316. This opens up possibilities of really synergizes Armies with maybe high Damage and Time values, to do potentially less attacks but inflict greater Damage, or have low Damage Units with smaller Time Variances, creating consistent chip Damage during Combat. Potential Units to be created could have ones like Gilded Heavy Bowmen, with a Damage of 92-108, but a Time Variance of 3.5-6.2 seconds. Or, a Frontier Raider, with Damage at 11-16, and a Time Variance of 0.3-0.8s. Combine 10 each of those in an Army and have an Army of 1000 Health with small consistent damage interspersed with large damage hits, because it is possible that at 3.8 seconds, both Frontier Raider could hit for 16 and Gilded Heavy Bowmen could hit for 108, causing a 124 Damage burst. The next section will go over Siege Units, which are going to look a little different, and Capturing Regions.
+Combat is done in 15-Second “bursts”, and each Army engaged in a Combat Burst will run their Combat logic. It will be easier to explain in a scenario:
+
+Combat is done in 15-second “Engagements”, with both Armies continuously inflicting Damage against one another over the duration of the battle. Armies are comprised of Unit Stacks, with each Unit representing 250 soldiers and contributing 250 HP to the Army Health Pool. An Army’s total Health is determined by the total number of surviving Units currently alive within the Army.
+
+For example, a Player may have an Army of 5,000 Men composed of:
+
+- 8 Swordsmen Units 
+- 2 Crossbowmen Units
+
+Each Unit contributes 250 HP:
+
+10 Units × 250 HP = 2,500 Army HP
+
+All surviving Units contribute their Damage and Armor values simultaneously during Combat. Damage STACKS per surviving Unit Count, meaning Units actively increase an Army’s offensive output while alive. Armor also STACKS per surviving Unit Count, reducing incoming Damage until casualties begin collapsing the defensive line.
+
+Using the above example:
+
+- Swordsmen deal 6-9 Damage every 1.2-1.6 seconds
+- Crossbowmen deal 2-5 Damage every 1.7-2.1 seconds
+
+Because Damage stacks:
+
+8 Swordsmen = 48-72 Damage
+2 Crossbowmen = 4-10 Damage
+
+This creates a combined Army attack profile of:
+52-82 Damage at their respective attack intervals.
+
+As Combat progresses throughout the 15-second Engagement:
+
+- Damage is inflicted in real-time
+- Army HP decreases dynamically
+- Casualties are continuously calculated
+- Surviving Unit Counts shrink over time
+
+Every time an Army receives 250 total Damage, ONE RANDOM UNIT is removed from the Army. That Unit no longer:
+
+- contributes Damage
+- contributes Armor
+- contributes Attack Frequency
+
+This creates natural battlefield degradation where Armies gradually lose offensive pressure and defensive integrity as casualties mount.
+
+At the end of the 15-second Engagement:
+
+- both Armies remain on the map if not destroyed
+- surviving HP and Units persist
+- the attacking Army becomes locked out until the next Turn
+- the defending Army may still act on its following Turn
+
+An example outcome may look like:
+
+Altair Expeditionary Force
+
+Starting Strength: 5,000 Men
+Ending Strength: 3,250 Men
+
+Vezeriin Warhost
+
+Starting Strength: 5,000 Men
+Ending Strength: 2,750 Men
+
+This system creates opportunities for highly specialized Army compositions. Some Armies may focus on:
+
+- fast low-damage attrition
+- heavy burst damage
+- sustained armor-based warfare
+- overwhelming attack density
+
+For example:
+
+- Gilded Heavy Bowmen may inflict 92-108 Damage every 3.5-6.2 seconds
+- Frontier Raiders may inflict 11-16 Damage every 0.3-0.8 seconds
+
+An Army mixing both Unit Types creates layered combat rhythms:
+
+- constant chip Damage from rapid attackers
+- devastating burst windows from heavy ranged Units
+
+It is possible for multiple Unit Types to trigger attacks simultaneously during Combat, resulting in sudden spikes of combined Damage against the opposing Army. This allows for emergent battlefield synergies and unique Army doctrines depending on Unit composition, surviving Unit Counts, and engagement duration. The next section will go over Siege Units, which are going to look a little different, and Capturing Regions.
 
 Siege Units / Capturing Regions:
 
-Siege Units all follow the same rules as the other Unit Types but are to be really used for the Capture System. Capturing a Region owned by an enemy Faction must be done by: Attempting to move an Army into an enemy Region that is unoccupied, in which a Panel will appear offering to attempt Capture. If an enemy Army is occupying that Region, that Army must be destroyed before Capture is attempted. Capture is done by taking the Region Level and transferring that into a Health and Damage value. So, a Region of 111 will have 111 Health, and also 111 Damage. All Outposts Time Variance is TWO SECONDS. This means that every two seconds, the capturing Army will receive 111 Damage. The Army will do their normal Damage value to the outpost. AFTER THE 10 SECOND COMBAT ACTION, the Region will be captured, as long as the Army Capturing survives the 10 second engagement. Capturing flips Region Ownership to the Capturing Faction. ALL STRUCTURES IMMEDIATELY FLIP OWNERSHIP. ALL RESEARCH, ADMINISTRATIONS ETC. STAY IN PLACE AND SIMPLY TRANSFER TO NEW OWNER.  This is unique in that, since the Regions Level gates it from enemy attacking if the enemies Empire Level isn’t high enough to enter, a Capturing Army is directly “lowering” the Region Level, opening it up for counterattacks. So, if an Army moves to Capture a 111 Level Region, and they survive the 10 second encounter and are able to inflict damage that brings the Region Level down to 6, THAT REGION IS NOW LEVEL 6, AND MUST BE BUILT BACK UP THROUGH TACTICS, LOGISTICS, AND DIPLOMACY TO PREVENT ANY POTENTIAL RE-CAPTURE.  This is where Siege Units come in. Siege Units are specifically set for low Damage and high Time Variance, designed to be their own Armies solely for Region Capture. You would want a stacked Army of Siege Units for a bigger Health Pool to survive the Capture Burst, and low Damage with less hits to make sure the Region Level does not tank too low to where it becomes a large expenditure to build back up before enemy Armies can move in to attack and attempt to take Ownership.
-
+Siege Units all follow the same rules as the other Unit Types but are to be really used for the Capture System. Capturing a Region owned by an enemy Faction must be done by: Attempting to move an Army into an enemy Region that is unoccupied, in which a Panel will appear offering to attempt Capture. If an enemy Army is occupying that Region, that Army must be destroyed before Capture is attempted. Capture is done by taking the Region Level and transferring that into a Health and Damage value. So, a Region of 111 will have 111 Health, and also 111 Damage. All Outposts Time Variance is ONE SECOND. This means that every two seconds, the capturing Army will receive 111 Damage. The Army will do their normal Damage value to the outpost. AFTER THE 15 SECOND COMBAT ACTION, the Region will be captured, as long as the Army Capturing survives the 15 second engagement. Capturing flips Region Ownership to the Capturing Faction. ALL STRUCTURES IMMEDIATELY FLIP OWNERSHIP. ALL RESEARCH, ADMINISTRATIONS ETC. STAY IN PLACE AND SIMPLY TRANSFER TO NEW OWNER.  This is unique in that, since the Regions Level gates it from enemy attacking if the enemies Empire Level isn’t high enough to enter, a Capturing Army is directly “lowering” the Region Level, opening it up for counterattacks. So, if an Army moves to Capture a 111 Level Region, and they survive the 15 second encounter and are able to inflict damage that brings the Region Level down to 6, THAT REGION IS NOW LEVEL 6, AND MUST BE BUILT BACK UP THROUGH TACTICS, LOGISTICS, AND DIPLOMACY TO PREVENT ANY POTENTIAL RE-CAPTURE.  This is where Siege Units come in. Siege Units are specifically set for low Damage and high Time Variance, designed to be their own Armies solely for Region Capture. You would want a stacked Army of Siege Units for a bigger Health Pool to survive the Capture Burst, and low Damage with less hits to make sure the Region Level does not tank too low to where it becomes a large expenditure to build back up before enemy Armies can move in to attack and attempt to take Ownership.
