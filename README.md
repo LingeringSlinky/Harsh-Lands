@@ -2,12 +2,11 @@ Harsh Lands is a Turn-Based Territory Control / Management / Auto-Battler hybrid
 
 Basics:
 
-The game map is a tile-based 20x20 board made up of 14 Regions, each comprised of a set amount of tiles. Each Faction has a starting region. Altair’s is Arc Mannis. Hex Tiles are only for movement purposes and Structure-Auto Place. There are no Terrain Requirements for Structures.
+The game map is a tile-based 20x20 board made up of 14 Regions, each comprised of a set amount of tiles. Each Faction has a starting region. Altair’s is Arc Mannis. Hex Tiles are only for Structure-Auto Place. There are no Terrain Requirements for Structures, but each Region has a set amount of buildable slots.
 
-Each of the Army Pawns move from adjacent Region by Region, NOT Tile by Tile. The Pawn is coded to move towards the closest center of each Region. An Army Pawn can only move once per turn.
-Regions are Level Locked by the Empire Level. This is a level that is increased by certain Structures that are built that explicitly state they generate +Empire per turn. If a Faction’s Empire level does not meet or exceed and adjacent Region level, they cannot move there. It is accepted that for the first few turns, the player cannot move their pawn to any adjacent Region, instead focusing on construction and management to increase their Empire Level until they are able to expand.
+Regions are Level Locked by the Empire Level. This is a level that is increased by certain Structures (FUTURE: Quests, Requisitions) that are built that explicitly state they generate +Empire per turn. If a Faction’s Empire level does not meet or exceed and adjacent Region level, they cannot establish a hold there. It is accepted that for the first few turns, the player cannot establish any adjacent Regions, instead focusing on construction and management to increase their Empire Level until they are able to expand.
 
-Expansion is done by moving to an available un-owned and un-occupied Region and Pressing O to build an Outpost if they have the required resources. This Outpost then flips control of the Region to the Faction that built the Outpost. Once that Region is owned, then any construction and management can be done to that Region.
+Expansion is done by selecting an available adjacent un-owned and un-occupied Region and Pressing O to build an Outpost if they have the required resources. This Outpost then flips control of the Region to the Faction that built the Outpost. Once that Region is owned, then any construction and management can be done to that Region.
 
 Combat is done in 10 second Auto-Bursts. Once a Combat Action is made, the Army that made the Action is locked out until the next turn. Combat is explained in greater detail further down this document.
 Structures are built on owned Regions and give resource generations and bonuses. They all have costs associated with them. They are explained further down this document.
@@ -106,17 +105,14 @@ Military:
 
 Military is used to recruit Units to build Armies. Once a Barracks, Range, Stable, or Foundry is constructed, no other Structures that allow Unit recruitment are able to be built, and the Units associated with the Structure will be able to be recruited through the Military Tab on the Region Management UI.
 
-Administration:
+Administration (PLANNED):
 
 Administration Cards are unique Cards that are slotted on to the Region. These give various bonuses to that Region. They are unlocked at certain Region Levels and eventually can have up to three per Region. They require Salaries to be paid per Turn, which is in Gold, that does stack per Administration assigned. So, if a player has two Admins assigned that are 750 and 250, they lose 1000 Gold per Turn. If a salary cannot be paid, the Administration will unequip itself but will be able to be used again as long as the requirements are met. Administrations are unlocked through the spending of Tactics, Logistics, and Diplomacy. Inside the Administration Tab is the Region Level option. This uses the same Tactics, Logistics, and Diplomacy to increase the Region Level, to fortify it from any Capture attempts by the enemy Factions.
 
-Army Pawns:
-
-Army Pawns are used to move around the board by Region if level allows. They are used to Capture Regions to increase the expansion of the Empire and further the Campaign End, and also to wage Battle with other Factions. They can also be used in a defensive stance, by simply leaving a Pawn on a Region the Player wishes to hold continuously. Army Pawns have one Action per turn, either move once or attack once. They are comprised of a Unit Stack, and a Player can have multiple Armies, but there is a limit of ONE Friendly Army per Region. Armies are also able to be merged. This is done by selecting an Army and moving it into a region with another Friendly Army. This will then combine the Army’s Unit Stacks on to the Army that was being moved to. Example: Player has an Army of 2500, and on an adjacent Region has an Army of 6000, they select the Army of 2500 and move that Army into the Region of the 6000 Army. That 6000 Army now becomes one Army of 8500. An Army’s Health is made up of its Unit Stack. Each Unit placed into an Army is worth 250hp. So, if three Units are recruited, that will add 750hp to an existing Army if merged, or another Army of 750hp. There are currently no caps on Army sizes.
 
 Units:
 
-Units are used to make up Armies. They are recruited by constructing the Structures required for their Unit Class (Barracks for Infantry, Range for Ranged, Stable for Cavalry, Foundry for Siege). There are numerous Unit Types in each Unit Class. The Infantry Class will have Swordsmen, Axemen, Halberdiers, Pikemen, etc. Ranged Class will have Crossbowmen, Longbowmen, Shortbowmen, Slingshotters, etc., so on and so forth. All Units have 250hp, which is used to make up an Armies overall Health Pool. Each Unit Type has a resource Cost associated with its recruitment, and recruiting a Unit is one of that Unit. Units have specific stats associated with them, explained below:
+Units are used to make up the Region Armies. They are recruited by constructing the Structures required for their Unit Class (Barracks for Infantry, Range for Ranged, Stable for Cavalry, Foundry for Siege). There are numerous Unit Types in each Unit Class. The Infantry Class will have Swordsmen, Axemen, Halberdiers, Pikemen, etc. Ranged Class will have Crossbowmen, Longbowmen, Shortbowmen, Slingshotters, etc., so on and so forth. All Units have 250hp, which is used to make up an Armies overall Health Pool. Each Unit Type has a resource Cost associated with its recruitment, and recruiting a Unit is one of that Unit. Units have specific stats associated with them, explained below:
 
 •	Health: What this Unit adds to the Army Health Pool. Is hard-set to 250.
 
@@ -140,88 +136,229 @@ Damage by Units is inflicted based on Damage Variance and Time Variance. Each Un
 
 Combat:
 
-Combat is done in 15-Second “bursts”, and each Army engaged in a Combat Burst will run their Combat logic. It will be easier to explain in a scenario:
+Player LMB adjacent enemy-owned Region
 
-Combat is done in 15-second “Engagements”, with both Armies continuously inflicting Damage against one another over the duration of the battle. Armies are comprised of Unit Stacks, with each Unit representing 250 soldiers and contributing 250 HP to the Army Health Pool. An Army’s total Health is determined by the total number of surviving Units currently alive within the Army.
+→ Opens Attack Panel
 
-For example, a Player may have an Army of 5,000 Men composed of:
+Player selects Battle Type:
 
-- 8 Swordsmen Units 
-- 2 Crossbowmen Units
+- Ambush (8s)
+- Skirmish (12s)
+- Engagement (18s)
+- Full Assault (25s)
 
-Each Unit contributes 250 HP:
+Combat Burst begins immediately.
 
-10 Units × 250 HP = 2,500 Army HP
+If defending Region Army reaches 0:
 
-All surviving Units contribute their Damage and Armor values simultaneously during Combat. Damage STACKS per surviving Unit Count, meaning Units actively increase an Army’s offensive output while alive. Armor also STACKS per surviving Unit Count, reducing incoming Damage until casualties begin collapsing the defensive line.
+- Region Ownership flips instantly
+- Structures remain intact
+- Research remains intact
+- Newly captured Region begins with 0 Army Strength
 
-Using the above example:
+The attacking Region retains its surviving Army strength.
 
-- Swordsmen deal 6-9 Damage every 1.2-1.6 seconds
-- Crossbowmen deal 2-5 Damage every 1.7-2.1 seconds
+Armies do NOT physically move between Regions.
 
-Because Damage stacks:
+This creates:
 
-8 Swordsmen = 48-72 Damage
+- unstable frontlines
+- regional recovery phases
+- constant territorial pressure
+- province-based warfare
 
-2 Crossbowmen = 4-10 Damage
+UNIT SCALE
 
-This creates a combined Army attack profile of:
-52-82 Damage at their respective attack intervals.
+- 1 Unit = 250 Soldiers
+- Every Unit has 250 HP
 
-As Combat progresses throughout the 15-second Engagement:
+ARMY HEALTH
 
-- Damage is inflicted in real-time
-- Army HP decreases dynamically
-- Casualties are continuously calculated
-- Surviving Unit Counts shrink over time
+Army HP =
+Total surviving Units × 250
 
-Every time an Army receives 250 total Damage, ONE RANDOM UNIT is removed from the Army. That Unit no longer:
+Example:
+20 Units = 5000 HP
 
-- contributes Damage
-- contributes Armor
-- contributes Attack Frequency
+DAMAGE SYSTEM
 
-This creates natural battlefield degradation where Armies gradually lose offensive pressure and defensive integrity as casualties mount.
+Damage STACKS per surviving Unit.
 
-At the end of the 15-second Engagement:
+Example:
 
-- both Armies remain on the map if not destroyed
-- surviving HP and Units persist
-- the attacking Army becomes locked out until the next Turn
-- the defending Army may still act on its following Turn
+8 Swordsmen:
+6-9 Damage each
 
-An example outcome may look like:
+Total:
 
-Altair Expeditionary Force
+48-72 Damage
 
-Starting Strength: 5,000 Men
-Ending Strength: 3,250 Men
+Every surviving Unit contributes:
 
-Vezeriin Warhost
+- Damage
+- Armor
+- Attack cadence
 
-Starting Strength: 5,000 Men
-Ending Strength: 2,750 Men
+ARMOR SYSTEM
 
-This system creates opportunities for highly specialized Army compositions. Some Armies may focus on:
+Armor STACKS per surviving Unit.
 
-- fast low-damage attrition
-- heavy burst damage
-- sustained armor-based warfare
-- overwhelming attack density
+Example:
 
-For example:
+5 Protectorates:
 
-- Gilded Heavy Bowmen may inflict 92-108 Damage every 3.5-6.2 seconds
-- Frontier Raiders may inflict 11-16 Damage every 0.3-0.8 seconds
+6 Armor each
 
-An Army mixing both Unit Types creates layered combat rhythms:
+Total Army Armor:
 
-- constant chip Damage from rapid attackers
-- devastating burst windows from heavy ranged Units
+30
 
-It is possible for multiple Unit Types to trigger attacks simultaneously during Combat, resulting in sudden spikes of combined Damage against the opposing Army. This allows for emergent battlefield synergies and unique Army doctrines depending on Unit composition, surviving Unit Counts, and engagement duration. The next section will go over Siege Units, which are going to look a little different, and Capturing Regions.
+As Units die:
 
-Siege Units / Capturing Regions:
+- Army Armor decreases
+- Army Damage decreases
+- Attack density decreases
 
-Siege Units all follow the same rules as the other Unit Types but are to be really used for the Capture System. Capturing a Region owned by an enemy Faction must be done by: Attempting to move an Army into an enemy Region that is unoccupied, in which a Panel will appear offering to attempt Capture. If an enemy Army is occupying that Region, that Army must be destroyed before Capture is attempted. Capture is done by taking the Region Level and transferring that into a Health and Damage value. So, a Region of 111 will have 111 Health, and also 111 Damage. All Outposts Time Variance is ONE SECOND. This means that every two seconds, the capturing Army will receive 111 Damage. The Army will do their normal Damage value to the outpost. AFTER THE 15 SECOND COMBAT ACTION, the Region will be captured, as long as the Army Capturing survives the 15 second engagement. Capturing flips Region Ownership to the Capturing Faction. ALL STRUCTURES IMMEDIATELY FLIP OWNERSHIP. ALL RESEARCH, ADMINISTRATIONS ETC. STAY IN PLACE AND SIMPLY TRANSFER TO NEW OWNER.  This is unique in that, since the Regions Level gates it from enemy attacking if the enemies Empire Level isn’t high enough to enter, a Capturing Army is directly “lowering” the Region Level, opening it up for counterattacks. So, if an Army moves to Capture a 111 Level Region, and they survive the 15 second encounter and are able to inflict damage that brings the Region Level down to 6, THAT REGION IS NOW LEVEL 6, AND MUST BE BUILT BACK UP THROUGH TACTICS, LOGISTICS, AND DIPLOMACY TO PREVENT ANY POTENTIAL RE-CAPTURE.  This is where Siege Units come in. Siege Units are specifically set for low Damage and high Time Variance, designed to be their own Armies solely for Region Capture. You would want a stacked Army of Siege Units for a bigger Health Pool to survive the Capture Burst, and low Damage with less hits to make sure the Region Level does not tank too low to where it becomes a large expenditure to build back up before enemy Armies can move in to attack and attempt to take Ownership.
+CASUALTY SYSTEM
+
+Every:
+
+250 Damage received
+
+removes:
+
+ONE RANDOM UNIT
+
+Removed Units:
+
+- stop dealing Damage
+- stop contributing Armor
+- stop contributing Attack Frequency
+
+This creates:
+
+- battlefield degradation
+- collapsing frontlines
+- momentum swings
+- attritional warfare
+
+TIME VARIANCE SYSTEM
+
+Every Unit attacks using:
+
+- Damage Minimum/Maximum
+- Time Minimum/Maximum
+
+Example:
+
+Fang-Toothed Berzerkers:
+11-15 Damage
+every 0.3-0.7 seconds
+
+Hvaasnaa Protectorates:
+21-26 Damage
+every 3.5-4.1 seconds
+
+This creates:
+
+- asynchronous combat rhythms
+- burst windows
+- cadence pressure
+- emergent combat behavior
+
+BATTLE TYPES
+
+AMBUSH
+- 8 Seconds
+- Low casualties
+- Fast aggression
+- Best for:
+  - Vezeriin
+  - weakening enemy Regions
+  - hit-and-run pressure
+
+SKIRMISH
+- 12 Seconds
+- Light-medium casualties
+- Border warfare
+- Best for:
+  - Vezeriin
+  - aggressive expansion
+  - attritional pressure
+
+ENGAGEMENT
+- 18 Seconds
+- Standard battle duration
+- Moderate-heavy casualties
+- Best for:
+  - Sei Rae
+  - balanced warfare
+  - sustained pressure
+
+FULL ASSAULT
+- 25 Seconds
+- Extremely high casualties
+- Decisive warfare
+- Best for:
+  - Altair
+  - breakthrough offensives
+  - crushing enemy Regions
+
+FACTION WARFARE IDENTITIES
+
+ALTAIR DOMINION
+- elite stabilization
+- heavy armor
+- slower attack cadence
+- stronger in long battles
+
+SEI RAE
+- disciplined attrition
+- balanced cadence
+- sustained pressure
+- flexible engagement length
+
+VEZERIIN
+- swarm warfare
+- rapid attack cadence
+- no armor
+- strongest in short battles
+
+GARRISON SYSTEM
+
+Each Region contains a Garrison.
+
+The Garrison Tab displays:
+
+- Total Men
+- Total Units
+- Army HP
+- Army Armor
+- Estimated DPS
+- Unit Composition
+- Unit Stats
+
+Total Gameplay Loop
+
+→ Build Structures
+→ Generate Resources
+→ Recruit Units
+→ Strengthen Region Garrison
+→ Attack Adjacent Region
+→ Resolve Combat Burst
+→ Capture Territory
+→ Rebuild Newly Captured Region
+→ Expand Empire
+
+OVERALL DESIGN PHILOSOPHY
+
+Harsh Lands is:
+
+- province warfare
+- attritional conquest
+- frontier collapse
+- imperial expansion
+- regional military management
+- large-scale atmospheric war simulation
+
+
