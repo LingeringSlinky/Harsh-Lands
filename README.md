@@ -8,7 +8,7 @@ Regions are Level Locked by the Empire Level. This is a level that is increased 
 
 Expansion is done by selecting an available adjacent un-owned and un-occupied Region and Pressing O to build an Outpost if they have the required resources. This Outpost then flips control of the Region to the Faction that built the Outpost. Once that Region is owned, then any construction and management can be done to that Region.
 
-Combat is done in 10 second Auto-Bursts. Once a Combat Action is made, the Army that made the Action is locked out until the next turn. Combat is explained in greater detail further down this document.
+Combat is done in various set x-second Auto-Bursts. Once a Combat Action is made, the Army that made the Action is locked out until the next turn. Combat is explained in greater detail further down this document.
 Structures are built on owned Regions and give resource generations and bonuses. They all have costs associated with them. They are explained further down this document.
 
 Resources are generated per turn and come from the various Structures built in a Region. Resources are put into a Global Pool for the Faction, not tied to specific Regions.
@@ -103,7 +103,7 @@ Research is used to increase the Resource generation for specific Structures. It
 
 Military:
 
-Military is used to recruit Units to build Armies. Once a Barracks, Range, Stable, or Foundry is constructed, no other Structures that allow Unit recruitment are able to be built, and the Units associated with the Structure will be able to be recruited through the Military Tab on the Region Management UI.
+Military is used to recruit Units to fortify Regions. Once a Barracks, Range, Stable, or Foundry is constructed, no other Structures that allow the same Type of Unit recruitment are able to be built, and the Units associated with the Structure will be able to be recruited through the Military Tab on the Region Management UI.
 
 Administration (PLANNED):
 
