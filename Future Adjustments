@@ -1,0 +1,86 @@
+Remove Army Pawn and Movement Logic
+
+Regions directly control Armies
+Army Strength displayed as Text on Region
+
+Add Garrison Tab to Region / Outpost UI
+- Displays Units tied to Region
+- Displays:
+  - Total Men
+  - Total Units
+  - Army HP
+  - Army Armor
+  - Estimated DPS
+  - Unit Composition
+  - Unit Stats
+
+Military Structures
+- ONE Barracks per Region
+- ONE Range per Region
+- ONE Stable per Region
+- ONE Foundry per Region
+
+Recruitment
+- Recruitment flow remains the same
+- Recruited Units now populate the Region Garrison directly
+
+Combat Refactor
+- Unit Damage STACKS per surviving Unit
+- Unit Armor STACKS per surviving Unit
+- Remove Army Pawn combat/movement dependency
+- Unit Health increased to 250 HP
+- Combat Engagement Length is now  
+•	Ambush (8s)
+•	Skirmish (12s)
+•	Engagement (18s)
+•	Full Assault (25s)
+
+
+Region Interaction
+- LMB adjacent unoccupied Region:
+  - Opens Capture Panel
+  - Establish Outpost
+  - Flip Region Ownership
+
+- LMB adjacent enemy-owned Region:
+  - Opens Attack Panel
+  - Starts 15-second Combat Engagement
+
+Combat Casualties
+- Every 250 Damage removes 1 random Unit
+- Removed Units:
+  - stop dealing Damage
+  - stop contributing Armor
+
+Regional Markets
+- Every Region has unique Market prices
+- Resource prices fluctuate per Turn
+- Regional variance based on:
+  - terrain
+  - abundance
+  - scarcity
+  - trade activity
+
+Research Refactor
+- Increase Research Costs significantly per Tier
+- Increase Research Bonuses significantly per Tier
+- Scaling becomes exponential instead of linear
+
+New Resources
+- Tactics
+- Logistics
+- Diplomacy
+
+Used for:
+- advanced recruitment
+- administration
+- region progression
+- military specialization
+- strategic development
+
+Rounding Rule
+- ALL percentage-based calculations round to nearest WHOLE number
+
+Terrain
+- all Structures use Plains Tiles
+- all other Tiles are for blocking / balance per Region
